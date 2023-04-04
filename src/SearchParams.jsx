@@ -21,8 +21,9 @@ const SearhParams = () => {
   const pets = results?.data?.pets ?? [];
 
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12 ">
       <form
+        className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
@@ -45,6 +46,7 @@ const SearhParams = () => {
             id="location"
             name="location"
             type="text"
+            className="search-input"
             placeholder="location"
           />
         </label>
@@ -53,6 +55,7 @@ const SearhParams = () => {
           Animal
           <select
             id="animal"
+            className="search-input"
             value={animal}
             onChange={(e) => {
               setAnimal(e.target.value);
@@ -67,14 +70,21 @@ const SearhParams = () => {
 
         <label htmlFor="breed">
           Breed
-          <select id="breed" name="breed" disabled={breeds.length === 0}>
+          <select
+            id="breed"
+            className="search-input grayed-out-disabled"
+            name="breed"
+            disabled={breeds.length === 0}
+          >
             <option />
             {breeds.map((el) => {
               return <option key={el}>{el}</option>;
             })}
           </select>
         </label>
-        <button>Submit</button>
+        <button className="rounded border-none bg-orange-500 px-6 py-2 text-white hover:opacity-50">
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>
